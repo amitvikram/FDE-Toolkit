@@ -22,24 +22,47 @@ type UserContextValue = {
 };
 
 const UserContext = createContext<UserContextValue | null>(null);
+const siteOnly = process.env.NEXT_PUBLIC_SITE_ONLY === "true";
 
-export function UserProvider({ children }: { children: ReactNode }) {
+function PublicSiteUserProvider({ children }: { children: ReactNode }) {
+  return (
+    <UserContext.Provider
+      value={{
+        user: null,
+        isLoading: false,
+        isAuthenticated: false,
+      }}
+    >
+      {children}
+    </UserContext.Provider>
+  );
+}
+
+function ConnectedUserProvider({ children }: { children: ReactNode }) {
   const identity = useQuery(api.auth.getCurrentUser);
   const isLoading = identity === undefined;
   const user = (identity as User | null | undefined) ?? null;
   const isAuthenticated = user !== null;
 
-  const value: UserContextValue = {
-    user,
-    isLoading,
-    isAuthenticated,
-  };
-
   return (
-    <UserContext.Provider value={value}>
+    <UserContext.Provider
+      value={{
+        user,
+        isLoading,
+        isAuthenticated,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );
+}
+
+export function UserProvider({ children }: { children: ReactNode }) {
+  if (siteOnly) {
+    return <PublicSiteUserProvider>{children}</PublicSiteUserProvider>;
+  }
+
+  return <ConnectedUserProvider>{children}</ConnectedUserProvider>;
 }
 
 export function useUser(): UserContextValue {
