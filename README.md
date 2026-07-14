@@ -1,8 +1,8 @@
-# Synapse
+# FDE-Toolkit
 
 ## Forward-deployed AI product laboratory
 
-Synapse gives product teams and enterprise clients a controlled environment for turning user feedback into working software experiments.
+FDE-Toolkit gives product teams and enterprise clients a controlled environment for turning user feedback into working software experiments.
 
 Each tester receives an isolated sandbox. The tester describes changes through text or voice, AI edits the application inside the sandbox, persistent memory retains context, and approved experiments become reviewable GitHub pull requests with generated change histories.
 
@@ -18,7 +18,7 @@ User feedback -> meeting notes -> product interpretation -> ticket -> engineerin
 
 Important context is lost at every transition. Users struggle to express what they need, product teams struggle to validate interpretations, and engineers receive requirements without the original interaction context.
 
-Synapse brings the user, product, AI, and engineering workflow into one governed loop.
+FDE-Toolkit brings the user, product, AI, and engineering workflow into one governed loop.
 
 ## Product flow
 
@@ -36,7 +36,7 @@ flowchart LR
     I --> J[Engineering review and merge]
 ```
 
-## What Synapse demonstrates
+## What FDE-Toolkit demonstrates
 
 - Forward-deployed AI engineering
 - Multi-tenant product experimentation
@@ -82,7 +82,7 @@ flowchart TB
 ### Major components
 
 ```text
-synapse/
+FDE-Toolkit/
 ├── worker/        Cloudflare Worker, sandbox API, AI code generation, file serving
 ├── dashboard/     Next.js application, admin UI, tester dashboard, Convex backend
 ├── convex/        Schema, mutations, actions, and GitHub integration
