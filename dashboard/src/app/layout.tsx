@@ -27,19 +27,21 @@ const fontMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://fde-toolkit.com"),
   title: {
-    default: "FDE-Toolkit | Customer-to-code infrastructure for forward-deployed teams",
+    default: "FDE-Toolkit | Scale customer-specific AI delivery",
     template: "%s | FDE-Toolkit",
   },
   description:
-    "FDE-Toolkit helps forward-deployed engineers, solutions teams, and product leaders turn customer workflows into governed software experiments and reviewable GitHub pull requests.",
+    "FDE-Toolkit helps enterprises, SaaS vendors, and systems integrators co-build AI and software workflows in isolated sandboxes and promote validated work into governed engineering pipelines.",
   keywords: [
     "forward deployed engineering",
-    "FDE platform",
-    "enterprise AI deployment",
-    "design partner software",
-    "customer sandbox",
-    "AI product development",
-    "GitHub workflow",
+    "enterprise AI delivery",
+    "customer-to-production platform",
+    "enterprise workflow prototyping",
+    "design partner platform",
+    "systems integrator delivery platform",
+    "SaaS product discovery",
+    "AI solution sandbox",
+    "GitHub workflow governance",
   ],
   alternates: {
     canonical: "/",
@@ -47,16 +49,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://fde-toolkit.com",
-    title: "FDE-Toolkit | Turn customer conversations into working software",
+    title: "FDE-Toolkit | Scale customer-specific AI delivery",
     description:
-      "Isolated customer sandboxes, AI-assisted iteration, persistent product memory, and governed GitHub handoff for forward-deployed teams.",
+      "Governed co-building, isolated sandboxes, persistent decision context, and engineering-native promotion for enterprises, SaaS vendors, and systems integrators.",
     siteName: "FDE-Toolkit",
   },
   twitter: {
     card: "summary_large_image",
-    title: "FDE-Toolkit | Customer-to-code infrastructure",
+    title: "FDE-Toolkit | Governed customer-to-production delivery",
     description:
-      "A governed operating layer for forward-deployed engineers, solutions teams, and enterprise design partners.",
+      "A forward-deployed delivery platform for enterprises, software vendors, and systems integrators.",
   },
   robots: {
     index: true,

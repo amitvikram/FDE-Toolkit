@@ -31,15 +31,15 @@ export function LandingHeader() {
           <div className="leading-tight">
             <span className="block text-sm font-semibold tracking-tight">FDE-Toolkit</span>
             <span className="hidden font-mono text-[9px] uppercase tracking-[0.16em] text-slate-500 sm:block">
-              customer-to-code
+              customer-to-production
             </span>
           </div>
         </Link>
 
         <nav className="hidden items-center gap-7 text-sm text-slate-400 md:flex" aria-label="Primary navigation">
-          <a href="#product" className="transition hover:text-white">Product</a>
-          <a href="#workflow" className="transition hover:text-white">Workflow</a>
-          <a href="#use-cases" className="transition hover:text-white">Use cases</a>
+          <a href="#buyers" className="transition hover:text-white">Customers</a>
+          <a href="#outcomes" className="transition hover:text-white">Outcomes</a>
+          <a href="#workflow" className="transition hover:text-white">Operating model</a>
           <a href="#security" className="transition hover:text-white">Governance</a>
         </nav>
 
@@ -53,10 +53,10 @@ export function LandingHeader() {
             Sign in
           </Button>
           <a
-            href="mailto:amitvik@gmail.com?subject=FDE-Toolkit%20design-partner%20pilot"
+            href="mailto:amitvik@gmail.com?subject=FDE-Toolkit%20enterprise%20workflow%20review"
             className="inline-flex items-center gap-2 rounded-lg bg-cyan-300 px-3.5 py-2 text-xs font-semibold text-slate-950 transition hover:bg-cyan-200 sm:text-sm"
           >
-            Book a pilot
+            Book a workflow review
             <ArrowRight className="size-3.5" />
           </a>
         </div>
