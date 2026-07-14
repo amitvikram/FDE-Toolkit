@@ -89,6 +89,32 @@ export default function RootLayout({
     })();
   `;
 
+  const githubLinkScript = `
+    (function() {
+      var oldUrl = 'https://github.com/amitvikram/FDE-Toolkit';
+      var newUrl = 'https://github.com/amitvikram/FDE-Toolkit-New';
+
+      function updateGitHubLinks() {
+        document.querySelectorAll('a[href="' + oldUrl + '"]').forEach(function(link) {
+          link.setAttribute('href', newUrl);
+          link.setAttribute('target', '_blank');
+          link.setAttribute('rel', 'noreferrer');
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', updateGitHubLinks, { once: true });
+      } else {
+        updateGitHubLinks();
+      }
+
+      new MutationObserver(updateGitHubLinks).observe(document.documentElement, {
+        childList: true,
+        subtree: true
+      });
+    })();
+  `;
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -96,6 +122,10 @@ export default function RootLayout({
       >
         <script
           dangerouslySetInnerHTML={{ __html: themeScript }}
+          suppressHydrationWarning
+        />
+        <script
+          dangerouslySetInnerHTML={{ __html: githubLinkScript }}
           suppressHydrationWarning
         />
         <ThemeProvider initialTheme="light">
