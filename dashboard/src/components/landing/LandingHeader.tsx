@@ -7,6 +7,8 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SignInDialog } from "@/components/SignInDialog";
 
+const siteOnly = process.env.NEXT_PUBLIC_SITE_ONLY === "true";
+
 function LogoMark() {
   return (
     <div className="flex size-9 items-center justify-center rounded-xl border border-cyan-300/30 bg-cyan-300/10 font-mono text-[11px] font-semibold text-cyan-200">
@@ -44,14 +46,16 @@ export function LandingHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="hidden text-slate-300 hover:bg-white/10 hover:text-white sm:inline-flex"
-            onClick={() => setSignInOpen(true)}
-          >
-            Sign in
-          </Button>
+          {!siteOnly && (
+            <Button
+              variant="ghost"
+              size="sm"
+              className="hidden text-slate-300 hover:bg-white/10 hover:text-white sm:inline-flex"
+              onClick={() => setSignInOpen(true)}
+            >
+              Sign in
+            </Button>
+          )}
           <a
             href="mailto:amitvik@gmail.com?subject=FDE-Toolkit%20enterprise%20workflow%20review"
             className="inline-flex items-center gap-2 rounded-lg bg-cyan-300 px-3.5 py-2 text-xs font-semibold text-slate-950 transition hover:bg-cyan-200 sm:text-sm"
@@ -62,12 +66,14 @@ export function LandingHeader() {
         </div>
       </div>
 
-      <SignInDialog
-        open={signInOpen}
-        onOpenChange={setSignInOpen}
-        callbackURL="/"
-        dismissible
-      />
+      {!siteOnly && (
+        <SignInDialog
+          open={signInOpen}
+          onOpenChange={setSignInOpen}
+          callbackURL="/"
+          dismissible
+        />
+      )}
     </header>
   );
 }
