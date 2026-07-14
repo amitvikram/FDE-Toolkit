@@ -8,7 +8,6 @@ import { DevConsoleFilter } from "@/components/DevConsoleFilter";
 import { Inter, DM_Serif_Display, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-
 const fontSans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -26,32 +25,48 @@ const fontMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Synapse",
-  description: "",
+  metadataBase: new URL("https://fde-toolkit.com"),
+  title: {
+    default: "FDE-Toolkit | Customer-to-code infrastructure for forward-deployed teams",
+    template: "%s | FDE-Toolkit",
+  },
+  description:
+    "FDE-Toolkit helps forward-deployed engineers, solutions teams, and product leaders turn customer workflows into governed software experiments and reviewable GitHub pull requests.",
+  keywords: [
+    "forward deployed engineering",
+    "FDE platform",
+    "enterprise AI deployment",
+    "design partner software",
+    "customer sandbox",
+    "AI product development",
+    "GitHub workflow",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://fde-toolkit.com",
+    title: "FDE-Toolkit | Turn customer conversations into working software",
+    description:
+      "Isolated customer sandboxes, AI-assisted iteration, persistent product memory, and governed GitHub handoff for forward-deployed teams.",
+    siteName: "FDE-Toolkit",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FDE-Toolkit | Customer-to-code infrastructure",
+    description:
+      "A governed operating layer for forward-deployed engineers, solutions teams, and enterprise design partners.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   icons: [
     {
       rel: "icon",
       type: "image/svg+xml",
-      url: "/synapse.svg",
-      media: "(prefers-color-scheme: light)",
-    },
-    {
-      rel: "icon",
-      type: "image/png",
-      url: "/synapse.png",
-      media: "(prefers-color-scheme: light)",
-    },
-    {
-      rel: "icon",
-      type: "image/svg+xml",
-      url: "/synapse-light.svg",
-      media: "(prefers-color-scheme: dark)",
-    },
-    {
-      rel: "icon",
-      type: "image/png",
-      url: "/synapse-light.png",
-      media: "(prefers-color-scheme: dark)",
+      url: "/fde-toolkit.svg",
     },
   ],
 };
@@ -64,7 +79,7 @@ export default function RootLayout({
   const themeScript = `
     (function() {
       try {
-        var k = 'synapse-theme';
+        var k = 'fde-toolkit-theme';
         var stored = localStorage.getItem(k);
         var dark = stored === 'dark' || (stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
         document.documentElement.classList.toggle('dark', dark);
