@@ -1,9 +1,9 @@
-# Synapse Setup and Deployment
+# FDE-Toolkit Setup and Deployment
 
 ## Repository structure
 
 ```text
-synapse/
+FDE-Toolkit/
 ├── worker/        Cloudflare Worker, sandbox API, AI code generation, file serving
 ├── dashboard/     Next.js application, admin UI, tester dashboard, Convex backend
 ├── convex/        Located inside dashboard, schema, mutations, actions
