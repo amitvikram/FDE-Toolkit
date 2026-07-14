@@ -19,7 +19,7 @@ async function sendResendEmail(to: string, subject: string, html: string) {
       Authorization: `Bearer ${key}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ from: "Synapse <onboarding@resend.dev>", to, subject, html }),
+    body: JSON.stringify({ from: "FDE-Toolkit <onboarding@resend.dev>", to, subject, html }),
   });
   const body = await res.json();
   console.log("[Resend]", res.status, JSON.stringify(body));
@@ -78,7 +78,7 @@ export const createAuthOptions = (ctx: GenericCtx<DataModel>) => {
   // - SITE_URL = your app URL (e.g. http://localhost:3000 in dev)
   // - BETTER_AUTH_SECRET = a random secret (same value everywhere you run auth)
   return {
-    appName: "My App",
+    appName: "FDE-Toolkit",
     baseURL: process.env.SITE_URL || "http://localhost:3000",
     secret: process.env.BETTER_AUTH_SECRET || "change-me-in-production",
     database: authComponent.adapter(ctx),
@@ -89,11 +89,11 @@ export const createAuthOptions = (ctx: GenericCtx<DataModel>) => {
         try {
           await sendResendEmail(
             data.user.email,
-            "Verify your Synapse email",
+            "Verify your FDE-Toolkit email",
             `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:32px 24px;background:#0b0d11;color:#e4e7ed;border-radius:12px">
               <div style="margin-bottom:24px">
-                <span style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:linear-gradient(135deg,#6c72cb,#8187de);border-radius:8px;font-weight:700;font-size:16px;color:#fff">S</span>
-                <span style="margin-left:10px;font-weight:700;font-size:18px;vertical-align:middle">Synapse</span>
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:linear-gradient(135deg,#6c72cb,#8187de);border-radius:8px;font-weight:700;font-size:12px;color:#fff">FDE</span>
+                <span style="margin-left:10px;font-weight:700;font-size:18px;vertical-align:middle">FDE-Toolkit</span>
               </div>
               <h1 style="font-size:22px;font-weight:700;margin:0 0 10px">Verify your email</h1>
               <p style="color:#7a8194;font-size:14px;line-height:1.6;margin:0 0 24px">
@@ -103,7 +103,7 @@ export const createAuthOptions = (ctx: GenericCtx<DataModel>) => {
                 Verify Email
               </a>
               <p style="color:#7a8194;font-size:12px;margin-top:24px">
-                If you didn't create a Synapse account, you can safely ignore this email.
+                If you didn't create an FDE-Toolkit account, you can safely ignore this email.
               </p>
             </div>`,
           );
@@ -119,11 +119,11 @@ export const createAuthOptions = (ctx: GenericCtx<DataModel>) => {
       sendResetPassword: async (data) => {
         await sendResendEmail(
           data.user.email,
-          "Reset your Synapse password",
+          "Reset your FDE-Toolkit password",
           `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:32px 24px;background:#0b0d11;color:#e4e7ed;border-radius:12px">
             <div style="margin-bottom:24px">
-              <span style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:linear-gradient(135deg,#6c72cb,#8187de);border-radius:8px;font-weight:700;font-size:16px;color:#fff">S</span>
-              <span style="margin-left:10px;font-weight:700;font-size:18px;vertical-align:middle">Synapse</span>
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:linear-gradient(135deg,#6c72cb,#8187de);border-radius:8px;font-weight:700;font-size:12px;color:#fff">FDE</span>
+              <span style="margin-left:10px;font-weight:700;font-size:18px;vertical-align:middle">FDE-Toolkit</span>
             </div>
             <h1 style="font-size:22px;font-weight:700;margin:0 0 10px">Reset your password</h1>
             <p style="color:#7a8194;font-size:14px;line-height:1.6;margin:0 0 24px">
