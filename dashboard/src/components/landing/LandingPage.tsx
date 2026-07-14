@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import {
   ArrowRight,
   Boxes,
@@ -15,51 +16,88 @@ import {
   Workflow,
 } from "lucide-react";
 
-const audience = [
+const buyerSegments = [
   {
-    icon: Sparkles,
-    title: "AI product companies",
+    icon: ShieldCheck,
+    eyebrow: "Enterprise AI and transformation teams",
+    title: "Move priority workflows from workshop to governed pilot.",
     description:
-      "Turn design-partner conversations into working product increments without losing the context behind each request.",
+      "Give business users, architects, and engineering teams a controlled place to co-build and validate AI-enabled workflows before they enter production delivery.",
+    outcomes: [
+      "Validate requirements against a working experience",
+      "Keep data, access, and approval boundaries explicit",
+      "Hand approved changes to internal engineering with context intact",
+    ],
   },
   {
     icon: Layers3,
-    title: "Enterprise SaaS vendors",
+    eyebrow: "SaaS and AI product vendors",
+    title: "Turn design-partner work into reusable product capability.",
     description:
-      "Give strategic customers a safe place to shape workflows while your core engineering standards remain intact.",
+      "Capture customer-specific learning without allowing strategic accounts to become permanent forks of the core platform.",
+    outcomes: [
+      "Shorten the discovery-to-product feedback loop",
+      "Separate reusable product patterns from one-off requests",
+      "Preserve upgradeability and engineering standards",
+    ],
   },
   {
     icon: Users,
-    title: "Systems integrators",
+    eyebrow: "Systems integrators and consulting firms",
+    title: "Standardize forward-deployed delivery across teams and accounts.",
     description:
-      "Standardize customer discovery, rapid prototyping, evidence capture, and engineering handoff across delivery teams.",
+      "Create a repeatable method for discovery, prototyping, evidence capture, client review, and engineering handoff while retaining reusable delivery IP.",
+    outcomes: [
+      "Reduce reinvention across engagements",
+      "Improve delivery visibility and governance",
+      "Protect margin through reusable patterns and playbooks",
+    ],
+  },
+];
+
+const businessOutcomes = [
+  {
+    value: "Faster validation",
+    description: "Replace long requirement cycles with working, reviewable experiments.",
+  },
+  {
+    value: "Higher reuse",
+    description: "Convert customer learning into product patterns, templates, and delivery IP.",
+  },
+  {
+    value: "Lower delivery risk",
+    description: "Keep generated changes isolated until people and controls approve promotion.",
+  },
+  {
+    value: "Cleaner handoff",
+    description: "Carry intent, decisions, evidence, and change history into engineering review.",
   },
 ];
 
 const workflowSteps = [
   {
     number: "01",
-    title: "Connect the product",
+    title: "Connect the product or solution baseline",
     description:
-      "Start from your existing GitHub repository, approved starter application, or reusable industry solution.",
+      "Start from an existing GitHub repository, approved starter application, reference architecture, or reusable industry solution.",
   },
   {
     number: "02",
-    title: "Create an isolated customer sandbox",
+    title: "Create an isolated engagement sandbox",
     description:
-      "Give each design partner or client team a controlled environment with its own files, preview, memory, and access boundary.",
+      "Give each customer, business team, or project a bounded environment with its own files, preview, memory, and access boundary.",
   },
   {
     number: "03",
-    title: "Co-build in the language of the workflow",
+    title: "Co-build around the real workflow",
     description:
-      "Users explain what should change through text or voice. AI translates intent into visible, testable application updates.",
+      "Users describe the desired outcome through text or voice. AI converts intent into visible, testable application changes while preserving decisions.",
   },
   {
     number: "04",
-    title: "Promote learning into the product",
+    title: "Promote validated learning",
     description:
-      "Approved experiments become branches and pull requests with the customer context, change history, and human review intact.",
+      "Approved experiments become branches and pull requests with customer context, change history, and human review attached.",
   },
 ];
 
@@ -68,55 +106,55 @@ const capabilities = [
     icon: Boxes,
     title: "Isolated sandboxes",
     description:
-      "Separate customer experiments by user, project, repository, files, preview environment, and execution boundary.",
+      "Separate experiments by organization, project, repository, user, files, preview environment, and execution boundary.",
   },
   {
     icon: MessageSquare,
-    title: "Customer-native iteration",
+    title: "Workflow-native discovery",
     description:
-      "Capture requests through natural language and voice while keeping the original intent connected to the resulting change.",
+      "Capture business intent through natural language and voice while keeping the original request connected to the resulting change.",
   },
   {
     icon: Sparkles,
     title: "AI-assisted application changes",
     description:
-      "Use models to edit, explain, and refine the application inside a bounded environment rather than an uncontrolled production codebase.",
+      "Use models to edit, explain, and refine applications inside bounded environments rather than uncontrolled production codebases.",
   },
   {
     icon: Network,
-    title: "Persistent product memory",
+    title: "Engagement and product memory",
     description:
-      "Retain decisions, experiments, feedback, and prior iterations so teams do not restart discovery from zero.",
+      "Retain decisions, feedback, experiments, constraints, and prior iterations so teams do not restart discovery at every handoff.",
   },
   {
     icon: GitPullRequest,
-    title: "GitHub-native handoff",
+    title: "Engineering-native promotion",
     description:
       "Export approved work into branches, commits, pull requests, and reviewable change histories that engineering teams already understand.",
   },
   {
     icon: ShieldCheck,
-    title: "Human-controlled promotion",
+    title: "Human-controlled governance",
     description:
-      "Keep product owners and engineers accountable for what becomes a formal product change, release candidate, or reusable pattern.",
+      "Keep product, architecture, security, and engineering owners accountable for what becomes a formal change or reusable pattern.",
   },
 ];
 
-const useCases = [
-  "Enterprise design-partner programs",
-  "AI workflow discovery and deployment",
+const engagementUseCases = [
+  "Enterprise AI workflow pilots",
+  "Strategic design-partner programs",
   "Vertical SaaS solution acceleration",
   "Customer-specific integration prototyping",
   "Implementation proof-of-value programs",
-  "Forward-deployed engineering playbooks",
+  "Forward-deployed engineering operating models",
 ];
 
 const governanceItems = [
-  "Repository and sandbox isolation",
-  "Minimum-privilege tool access",
+  "Repository, tenant, and sandbox isolation",
+  "Minimum-privilege tool and model access",
   "Secret and credential boundaries",
   "Human approval before promotion",
-  "Traceable change and decision history",
+  "Traceable decisions, evidence, and change history",
   "Extensible test, security, and quality gates",
 ];
 
@@ -128,7 +166,7 @@ function LogoMark() {
   );
 }
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
+function SectionLabel({ children }: { children: ReactNode }) {
   return (
     <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/5 px-3 py-1 font-mono text-xs uppercase tracking-[0.22em] text-cyan-300">
       <span className="size-1.5 rounded-full bg-cyan-300" />
@@ -151,38 +189,38 @@ export function LandingPage() {
           <div>
             <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300 backdrop-blur">
               <Sparkles className="size-4 text-cyan-300" />
-              The customer-to-code operating layer for forward-deployed teams
+              Governed customer-to-production delivery for AI and software teams
             </div>
 
             <h1 className="max-w-4xl text-5xl font-semibold tracking-[-0.045em] text-balance sm:text-6xl lg:text-7xl">
-              Turn customer conversations into working software.
+              Scale customer-specific AI delivery.
               <span className="block bg-gradient-to-r from-cyan-300 via-sky-300 to-orange-300 bg-clip-text text-transparent">
-                Without creating another fork.
+                Without scaling one-off engineering.
               </span>
             </h1>
 
             <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
-              FDE-Toolkit gives forward-deployed engineers, solutions teams, and product leaders isolated customer sandboxes, AI-assisted iteration, persistent product memory, and governed GitHub handoff.
+              FDE-Toolkit helps enterprises, SaaS vendors, and systems integrators co-build solutions in isolated sandboxes, retain the decisions behind every change, and promote validated work into governed engineering pipelines.
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <a
-                href="mailto:amitvik@gmail.com?subject=FDE-Toolkit%20design-partner%20pilot"
+                href="mailto:amitvik@gmail.com?subject=FDE-Toolkit%20enterprise%20workflow%20review"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-300 px-6 py-3.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
               >
-                Start a design-partner pilot
+                Book an enterprise workflow review
                 <ArrowRight className="size-4" />
               </a>
               <a
-                href="#workflow"
+                href="#buyers"
                 className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/10"
               >
-                See the operating model
+                Explore by customer type
               </a>
             </div>
 
             <div className="mt-10 grid max-w-2xl grid-cols-2 gap-3 text-sm text-slate-300 sm:grid-cols-4">
-              {["Isolated sandboxes", "Customer memory", "Human approval", "GitHub-native"].map((item) => (
+              {["Faster validation", "Reusable IP", "Human approval", "GitHub-native"].map((item) => (
                 <div key={item} className="flex items-center gap-2">
                   <Check className="size-4 shrink-0 text-cyan-300" />
                   <span>{item}</span>
@@ -201,7 +239,7 @@ export function LandingPage() {
                   <span className="size-2.5 rounded-full bg-emerald-300/80" />
                 </div>
                 <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-slate-500">
-                  customer sandbox / acme-health
+                  enterprise sandbox / claims-operations
                 </span>
               </div>
 
@@ -209,26 +247,26 @@ export function LandingPage() {
                 <div className="space-y-3">
                   <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-4">
                     <div className="mb-3 flex items-center gap-2 text-xs font-medium uppercase tracking-[0.16em] text-slate-500">
-                      <MessageSquare className="size-3.5" /> Customer request
+                      <MessageSquare className="size-3.5" /> Workflow requirement
                     </div>
                     <p className="text-sm leading-6 text-slate-200">
-                      “Our operations team needs the exception reason, policy evidence, and next action on one screen.”
+                      “Give reviewers the exception reason, policy evidence, confidence, and recommended action on one screen.”
                     </p>
                   </div>
 
                   <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-4">
                     <div className="mb-3 flex items-center justify-between">
                       <span className="text-xs font-medium uppercase tracking-[0.16em] text-cyan-300">
-                        Product memory
+                        Decision memory
                       </span>
                       <span className="rounded-full bg-cyan-300/10 px-2 py-1 font-mono text-[10px] text-cyan-200">
                         14 decisions retained
                       </span>
                     </div>
                     <ul className="space-y-2 text-xs leading-5 text-slate-300">
-                      <li>• Evidence must remain visible</li>
-                      <li>• Reviewer owns final disposition</li>
-                      <li>• Existing API contract preserved</li>
+                      <li>• Evidence remains visible to the reviewer</li>
+                      <li>• A human owns final disposition</li>
+                      <li>• Existing API contract is preserved</li>
                     </ul>
                   </div>
                 </div>
@@ -240,7 +278,7 @@ export function LandingPage() {
                       <p className="mt-1 text-sm font-medium text-white">Exception review workspace</p>
                     </div>
                     <span className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-2.5 py-1 text-[11px] text-emerald-200">
-                      Preview ready
+                      Validation ready
                     </span>
                   </div>
 
@@ -259,7 +297,7 @@ export function LandingPage() {
                     </div>
                     <div className="rounded-xl border border-white/10 bg-white/[0.035] p-3">
                       <div className="mb-2 flex items-center justify-between text-xs">
-                        <span className="text-slate-400">Evidence</span>
+                        <span className="text-slate-400">Evidence package</span>
                         <span className="text-cyan-300">3 linked sources</span>
                       </div>
                       <div className="space-y-2">
@@ -272,8 +310,8 @@ export function LandingPage() {
                       <div className="flex items-center gap-2">
                         <GitPullRequest className="size-4 text-orange-200" />
                         <div>
-                          <p className="text-xs font-medium text-white">Ready for product review</p>
-                          <p className="text-[10px] text-slate-500">Context and change history attached</p>
+                          <p className="text-xs font-medium text-white">Ready for engineering review</p>
+                          <p className="text-[10px] text-slate-500">Intent, evidence, and history attached</p>
                         </div>
                       </div>
                       <span className="rounded-lg bg-orange-200 px-2.5 py-1 text-[10px] font-semibold text-slate-950">
@@ -288,42 +326,76 @@ export function LandingPage() {
         </div>
       </section>
 
-      <section className="border-b border-white/10 bg-slate-900/40 px-5 py-10 sm:px-8 lg:px-12">
+      <section id="outcomes" className="border-b border-white/10 bg-slate-900/40 px-5 py-12 sm:px-8 lg:px-12">
         <div className="mx-auto max-w-7xl">
           <p className="text-center font-mono text-xs uppercase tracking-[0.2em] text-slate-500">
-            Built for teams where customer proximity and engineering discipline must coexist
+            The operating layer between customer discovery and production engineering
           </p>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {audience.map(({ icon: Icon, title, description }) => (
-              <div key={title} className="rounded-2xl border border-white/10 bg-white/[0.035] p-6">
-                <Icon className="size-6 text-cyan-300" />
-                <h2 className="mt-5 text-lg font-semibold text-white">{title}</h2>
-                <p className="mt-2 text-sm leading-6 text-slate-400">{description}</p>
+          <div className="mt-8 grid gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 md:grid-cols-4">
+            {businessOutcomes.map((item) => (
+              <div key={item.value} className="bg-slate-950 p-6">
+                <p className="text-base font-semibold text-white">{item.value}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-400">{item.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+      <section id="buyers" className="px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-4xl">
+            <SectionLabel>Built for three delivery models</SectionLabel>
+            <h2 className="text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">
+              One governed platform. Different paths to enterprise value.
+            </h2>
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-400">
+              FDE-Toolkit supports organizations buying AI solutions, vendors productizing customer learning, and services firms delivering repeatable transformation programs.
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-5 lg:grid-cols-3">
+            {buyerSegments.map(({ icon: Icon, eyebrow, title, description, outcomes }) => (
+              <article key={eyebrow} className="flex h-full flex-col rounded-3xl border border-white/10 bg-slate-900/55 p-7">
+                <div className="flex size-12 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-300/10 text-cyan-300">
+                  <Icon className="size-5" />
+                </div>
+                <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-cyan-300">{eyebrow}</p>
+                <h3 className="mt-3 text-2xl font-semibold tracking-[-0.02em]">{title}</h3>
+                <p className="mt-4 text-sm leading-6 text-slate-400">{description}</p>
+                <ul className="mt-6 space-y-3 border-t border-white/10 pt-6">
+                  {outcomes.map((outcome) => (
+                    <li key={outcome} className="flex items-start gap-3 text-sm leading-6 text-slate-300">
+                      <Check className="mt-1 size-4 shrink-0 text-emerald-300" />
+                      <span>{outcome}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-white/10 bg-white/[0.025] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
         <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div className="lg:sticky lg:top-28">
-            <SectionLabel>The product gap</SectionLabel>
+            <SectionLabel>The delivery gap</SectionLabel>
             <h2 className="text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">
-              Bespoke customer work creates value.
-              <span className="block text-slate-500">It also creates product entropy.</span>
+              Customer proximity creates value.
+              <span className="block text-slate-500">Unmanaged customization creates entropy.</span>
             </h2>
             <p className="mt-6 max-w-xl text-lg leading-8 text-slate-400">
-              Forward-deployed teams sit close to the real workflow, but their learning is often trapped in calls, tickets, prototypes, and one-off branches. FDE-Toolkit creates a governed path from customer discovery to reusable product change.
+              Forward-deployed teams understand the real workflow, but their learning is often trapped in calls, tickets, prototypes, and account-specific branches. FDE-Toolkit turns that learning into governed, reusable engineering input.
             </p>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
             {[
               ["Discovery is separated from delivery", "The people hearing the problem are not always the people implementing the solution."],
-              ["Context disappears at every handoff", "Customer intent gets compressed into tickets, screenshots, and partial acceptance criteria."],
-              ["Demos become disposable", "Valuable experiments prove demand but rarely preserve a clean route into the core product."],
-              ["Customer branches become permanent", "Teams move quickly at first, then inherit duplicated code, drift, and upgrade friction."],
+              ["Context disappears at every handoff", "Business intent is compressed into tickets, screenshots, and partial acceptance criteria."],
+              ["Pilots become disposable", "Experiments prove demand but often leave no clean route into production or the core product."],
+              ["Account-specific work becomes permanent", "Teams gain speed early, then inherit duplicated code, drift, support cost, and upgrade friction."],
             ].map(([title, description], index) => (
               <div key={title} className="rounded-3xl border border-white/10 bg-slate-900/60 p-6">
                 <span className="font-mono text-xs text-orange-300">0{index + 1}</span>
@@ -335,12 +407,12 @@ export function LandingPage() {
         </div>
       </section>
 
-      <section id="workflow" className="border-y border-white/10 bg-white/[0.025] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+      <section id="workflow" className="px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
             <SectionLabel>Operating model</SectionLabel>
             <h2 className="text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">
-              One continuous loop from customer intent to engineering review.
+              One continuous loop from workflow intent to engineering review.
             </h2>
           </div>
 
@@ -359,23 +431,23 @@ export function LandingPage() {
         </div>
       </section>
 
-      <section id="product" className="px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+      <section id="product" className="border-y border-white/10 bg-slate-900/40 px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
             <div>
               <SectionLabel>Product system</SectionLabel>
               <h2 className="text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">
-                More than a coding agent.
+                More than a coding agent. More than a prototype workspace.
               </h2>
             </div>
             <p className="max-w-2xl text-lg leading-8 text-slate-400 lg:justify-self-end">
-              Generic coding agents optimize the change. FDE-Toolkit preserves the operating context around the change: who requested it, what workflow it serves, how it was tested, what decisions were made, and who approved promotion.
+              Generic coding agents optimize a code change. FDE-Toolkit preserves the enterprise context around the change: who requested it, what workflow it serves, what constraints apply, how it was tested, and who approved promotion.
             </p>
           </div>
 
           <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {capabilities.map(({ icon: Icon, title, description }) => (
-              <div key={title} className="group rounded-3xl border border-white/10 bg-slate-900/50 p-7 transition hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-slate-900">
+              <div key={title} className="group rounded-3xl border border-white/10 bg-slate-950/70 p-7 transition hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-slate-950">
                 <div className="flex size-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-cyan-300 transition group-hover:border-cyan-300/30 group-hover:bg-cyan-300/10">
                   <Icon className="size-5" />
                 </div>
@@ -387,21 +459,21 @@ export function LandingPage() {
         </div>
       </section>
 
-      <section id="use-cases" className="border-y border-white/10 bg-slate-900/40 px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+      <section id="use-cases" className="px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
         <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-2 lg:items-center">
           <div>
             <SectionLabel>Where it fits</SectionLabel>
             <h2 className="text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">
-              Built for the messy middle between platform and production.
+              Built for the messy middle between strategy, configuration, and production software.
             </h2>
             <p className="mt-6 text-lg leading-8 text-slate-400">
-              Use FDE-Toolkit when the customer problem is important enough to co-build, but the resulting work still needs to become secure, maintainable, and reusable software.
+              Use FDE-Toolkit when a workflow is important enough to co-build with users, but the result still needs to become secure, maintainable, supportable, and reusable.
             </p>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2">
-            {useCases.map((item) => (
-              <div key={item} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-slate-950/70 p-5">
+            {engagementUseCases.map((item) => (
+              <div key={item} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-slate-900/60 p-5">
                 <Check className="mt-0.5 size-5 shrink-0 text-cyan-300" />
                 <span className="text-sm font-medium leading-6 text-slate-200">{item}</span>
               </div>
@@ -410,7 +482,7 @@ export function LandingPage() {
         </div>
       </section>
 
-      <section id="security" className="px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+      <section id="security" className="border-y border-white/10 bg-white/[0.025] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
         <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-slate-900 to-slate-950">
           <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
             <div className="border-b border-white/10 p-8 sm:p-10 lg:border-b-0 lg:border-r lg:p-14">
@@ -418,10 +490,10 @@ export function LandingPage() {
                 <Lock className="size-6" />
               </div>
               <h2 className="mt-8 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
-                Designed for governed experimentation.
+                Designed for governed enterprise co-building.
               </h2>
               <p className="mt-5 text-base leading-7 text-slate-400">
-                AI-generated changes should be treated as untrusted until validated. FDE-Toolkit is designed around isolation, explicit promotion, human accountability, and integration with your existing engineering controls.
+                AI-generated changes should be treated as untrusted until validated. FDE-Toolkit is designed around isolation, explicit promotion, human accountability, and integration with existing engineering, security, and release controls.
               </p>
             </div>
 
@@ -437,26 +509,26 @@ export function LandingPage() {
         </div>
       </section>
 
-      <section className="px-5 pb-24 sm:px-8 lg:px-12 lg:pb-32">
+      <section className="px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
         <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-cyan-300/20 bg-cyan-300 px-7 py-14 text-slate-950 sm:px-10 lg:px-16 lg:py-20">
           <div className="pointer-events-none absolute -right-20 -top-40 size-96 rounded-full border-[70px] border-white/20" />
           <div className="relative grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
             <div className="max-w-3xl">
               <div className="mb-5 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-slate-700">
-                <Workflow className="size-4" /> Design-partner pilot
+                <Workflow className="size-4" /> Focused enterprise pilot
               </div>
               <h2 className="text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
-                Bring one customer workflow. Leave with a repeatable deployment pattern.
+                Bring one high-value workflow. Leave with a repeatable delivery pattern.
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg">
-                Start with a focused product or workflow challenge, a representative codebase, and a small group of customer users. Prove the operating loop before expanding the platform footprint.
+                Start with a representative codebase or solution baseline, a small user group, and a clearly owned business outcome. Validate the co-building loop, governance model, and engineering handoff before expanding.
               </p>
             </div>
             <a
-              href="mailto:amitvik@gmail.com?subject=FDE-Toolkit%20pilot%20discussion"
+              href="mailto:amitvik@gmail.com?subject=FDE-Toolkit%20enterprise%20pilot%20discussion"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-slate-800"
             >
-              Discuss a pilot
+              Discuss an enterprise pilot
               <ArrowRight className="size-4" />
             </a>
           </div>
@@ -469,12 +541,13 @@ export function LandingPage() {
             <LogoMark />
             <div>
               <p className="font-semibold">FDE-Toolkit</p>
-              <p className="text-xs text-slate-500">Forward-deployed product infrastructure</p>
+              <p className="text-xs text-slate-500">Governed customer-to-production delivery</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-400">
+            <a href="#buyers" className="hover:text-white">Customers</a>
             <a href="#product" className="hover:text-white">Product</a>
-            <a href="#workflow" className="hover:text-white">Workflow</a>
+            <a href="#workflow" className="hover:text-white">Operating model</a>
             <a href="#security" className="hover:text-white">Governance</a>
             <a href="https://github.com/amitvikram/FDE-Toolkit" className="hover:text-white">GitHub</a>
             <a href="mailto:amitvik@gmail.com" className="hover:text-white">Contact</a>
